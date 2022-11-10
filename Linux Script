@@ -1,0 +1,47 @@
+#!/bin/bash
+
+#using 'uname -v' command to display the version of your kernel in line 6
+#ifconfig | sed -n 2p| awk '{print $2}' for your private ip with sed and awk command to specify and grab needed info.seen in line 15
+#curl ifconfig for your public ip address. seen in line 18
+#ip route |awk '{print $3}' | head -n 1 for your router ip address as seen in line 25
+#df -h command for your disk size, displaying available and used up spaces. seen in line 29
+#du -hs * | sort -rh | head -5 displays your top five directories and their sizes. seen in line 35
+#'vmstat -td 10' command for your CPU usage and the number (10) is the timer. refreshes every 10 seconds. seen in line 40
+#sleep is for a little delay in the script result. timer.
+
+sleep 1
+echo "Your Linux Version:"
+sleep 2
+uname -v
+sleep 3
+echo
+
+echo "Your Private IP Address:"
+ifconfig | sed -n 2p |awk '{print $2}'
+sleep 3
+
+echo
+
+echo "Your Public IP Address:"
+curl ifconfig.me
+sleep 3
+
+echo
+
+echo "Your Default Gateway:"
+ip route | awk '{print $3}' | head -n 1
+sleep 3
+echo
+
+echo "Your Disk size,free and used spaces:"
+df -h
+sleep 3
+echo
+
+echo "Top five (5) Directories and its sizes:"
+du -hs * | sort -rh | head -5
+sleep 3
+echo
+
+echo "CPU usage. it refreshes every 10 seconds"
+vmstat -td 10
